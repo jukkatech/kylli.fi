@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Asianajotoimisto Ulla-Riitta Kylli Oy</title>
+<meta name="description" content="Asiantuntevaa ja luotettavaa lakipalvelua Hyvinkäällä." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#094282;
+  --text:#1e1e1e;
+  --muted:#5a5a5a;
+
+  --spacing-xs:8px;
+  --spacing-sm:16px;
+  --spacing-md:28px;
+  --spacing-lg:48px;
+  --spacing-xl:96px;
+
+  --logo-width-desktop:280px;
+  --logo-width-mobile:180px;
+
+  --badge-size-desktop:88px;
+  --badge-size-mobile:64px;
+
+  --card-bg: rgba(255,255,255,0.78);
+  --card-border: rgba(9,66,130,0.06);
+
+  --icon-size: 22px;
+}
+
+/* ---------- Base ---------- */
+html,body{height:100%;margin:0;padding:0;font-family:'Inter',sans-serif;color:var(--text);-webkit-font-smoothing:antialiased;}
+body{
+  background:url("law.jpg") no-repeat center center fixed;
+  background-size:cover;
+  position:relative;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* readability overlay */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(255,255,255,0.92),rgba(255,255,255,0.95));
+  z-index:-2;
+}
+/* subtle animated tint overlay */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at 30% 40%, rgba(9,66,130,0.06), transparent 55%);
+  animation:subtleMove 20s ease-in-out infinite alternate;
+  z-index:-1;
+}
+
+/* ---------- Fixed Logo ---------- */
+.logo-fixed{
+  position:fixed;
+  top:20px;
+  left:20px;
+  z-index:1500;
+  background:rgba(255,255,255,0.96);
+  padding:12px 18px;
+  border-radius:12px;
+  box-shadow:0 16px 40px rgba(20,30,40,0.12);
+  transition:all .25s ease;
+}
+.logo-fixed img{
+  width:var(--logo-width-desktop);
+  height:auto;
+  transition:width .25s ease;
+}
+.logo-fixed.shrunk{
+  padding:8px 14px;
+}
+.logo-fixed.shrunk img{
+  width:calc(var(--logo-width-desktop) * 0.75);
+}
+.logo-fixed:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 48px rgba(20,30,40,0.14);
+}
+
+/* ---------- Wrapper ---------- */
+.wrapper{
+  max-width:1100px;
+  margin:0 auto;
+  padding:180px 40px var(--spacing-xl);
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  text-align:center;
+  display:flex;
+  justify-content:center;
+  margin-bottom:var(--spacing-xl);
+  animation:fadeUp 1s ease forwards;
+  opacity:0;
+  transform:translateY(28px);
+}
+.hero-inner{
+  max-width:720px;
+  padding:0 10px;
+}
+.firm-name{
+  font-weight:500;
+  font-size:13px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  color:var(--blue);
+  margin-bottom:14px;
+  opacity:0;
+  transform:translateY(6px);
+  animation:fadeInUp .7s ease forwards;
+}
+.firm-divider{
+  height:1px;
+  width:64px;
+  background:var(--blue);
+  margin:14px auto;
+  opacity:0;
+  transform:translateY(6px);
+  animation:fadeInUp .8s ease forwards;
+  animation-delay:0.06s;
+}
+.hero h1{
+  font-weight:400;
+  font-size:28px;
+  letter-spacing:0.3px;
+  color:var(--blue);
+  margin:18px 0 18px;
+  line-height:1.45;
+  opacity:0;
+  transform:translateY(10px);
+  animation:fadeInUp 1s ease forwards;
+  animation-delay:0.18s;
+}
+.hero p{
+  font-size:16px;
+  color:var(--muted);
+  line-height:1.65;
+  margin:0 auto;
+  max-width:640px;
+  font-weight:300;
+  opacity:0;
+  transform:translateY(12px);
+  animation:fadeInUp 1s ease forwards;
+  animation-delay:0.30s;
+}
+
+/* ---------- Services (grid) ---------- */
+.services {
+  margin-bottom:var(--spacing-xl);
+  animation:fadeUp 1s ease forwards;
+  opacity:0;
+  transform:translateY(28px);
+}
+.services-grid {
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:20px;
+  max-width:880px;
+  margin:0 auto;
+}
+
+/* service card */
+.service-card{
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding:18px 20px;
+  border-radius:10px;
+  box-shadow: 0 8px 20px rgba(12,18,26,0.04);
+  transition: transform .18s ease, box-shadow .18s ease;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+/* icon container */
+.service-icon{
+  width: var(--icon-size);
+  height: var(--icon-size);
+  flex: 0 0 var(--icon-size);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--blue);
+}
+
+/* service text */
+.service-title{
+  font-size:16px;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:6px;
+}
+.service-desc{
+  font-size:15px;
+  color:var(--muted);
+  line-height:1.5;
+  margin:0;
+}
+
+/* hover lift */
+.service-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(12,18,26,0.08);
+}
+
+/* ---------- Contact (centered & smaller) ---------- */
+.contact{
+  margin-top:var(--spacing-lg);
+  animation:fadeUp 1s ease forwards;
+  opacity:0;
+  transform:translateY(28px);
+  text-align:center; /* CENTER CONTENT */
+}
+.contact p{
+  font-size:14px; /* smaller */
+  color:var(--text);
+  margin:8px 0;
+}
+.contact .label{ font-weight:600; color:#333; margin-right:6px; font-size:14px; }
+.credibility{ margin-top:var(--spacing-md); font-size:13px; color:#666; }
+
+/* ---------- Footer ---------- */
+footer{ text-align:center; padding-top:var(--spacing-lg); font-size:12px; color:#888; }
+
+/* ---------- Badge ---------- */
+.badge-fixed{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:1400;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.96);
+  padding:8px;
+  border-radius:12px;
+  box-shadow:0 16px 40px rgba(20,30,40,0.12);
+}
+.badge-fixed img{ width:var(--badge-size-desktop); height:auto; display:block; }
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp{ to { opacity:1; transform:translateY(0); } }
+@keyframes fadeInUp{ to { opacity:1; transform:translateY(0); } }
+@keyframes subtleMove{ from { transform: translateX(-2%) translateY(-2%);} to { transform: translateX(2%) translateY(2%);} }
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  :root{
+    --logo-width-desktop:var(--logo-width-mobile);
+    --badge-size-desktop:var(--badge-size-mobile);
+  }
+  .wrapper{ padding:140px 20px 80px; }
+  .hero h1{ font-size:22px; }
+  .hero p{ font-size:14px; max-width:420px; }
+  .services-grid{ grid-template-columns: 1fr; gap:14px; max-width:520px; }
+  .service-card{ padding:14px; gap:10px; }
+  .service-title{ font-size:15px; }
+  .service-desc{ font-size:14px; }
+  .contact p{ font-size:13px; }
+  .badge-fixed{ right:12px; bottom:12px; padding:6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Fixed firm logo -->
+<div class="logo-fixed" id="firmLogo" aria-hidden="false" role="img" aria-label="Asianajotoimisto Ulla-Riitta Kylli Oy">
+  <img src="logo.gif" alt="Asianajotoimisto Ulla-Riitta Kylli Oy">
+</div>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="firm-name">Asianajotoimisto Ulla-Riitta Kylli Oy</div>
+      <div class="firm-divider" aria-hidden="true"></div>
+
+      <h1 id="hero-title">Asiantuntevaa<br>ja luotettavaa lakipalvelua</h1>
+
+      <p>
+        Tarjoamme yksilöllistä ja huolellista oikeudellista neuvontaa ja avustamista.
+        Palvelemme asiakkaitamme luottamuksellisesti ja ammattitaidolla.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" aria-labelledby="services-title">
+    <h2 id="services-title" style="text-align:center;font-family:'Playfair Display',serif;color:var(--blue);font-size:28px;margin-bottom:var(--spacing-md);">Palvelut</h2>
+
+    <div class="services-grid" role="list">
+      <!-- Perheoikeus -->
+      <div class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <!-- family icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="8" r="2.2"/><circle cx="15" cy="8" r="2.2"/><path d="M6 18c0-2.2 2.4-4 5.4-4s5.6 1.8 5.6 4"/></svg>
+        </div>
+        <div>
+          <div class="service-title">Perheoikeus</div>
+          <p class="service-desc">Neuvontaa ja edustusta perheoikeudellisissa asioissa, kuten avioeroissa ja lapsiasioissa.</p>
+        </div>
+      </div>
+
+      <!-- Sopimusoikeus -->
+      <div class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <!-- document icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        </div>
+        <div>
+          <div class="service-title">Sopimusoikeus</div>
+          <p class="service-desc">Laadimme ja arvioimme sopimuksia sekä avustamme sopimusriidoissa.</p>
+        </div>
+      </div>
+
+      <!-- Kiinteistöoikeus -->
+      <div class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <!-- house icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 11.5L12 4l9 7.5"/><path d="M5 22V12h14v10"/></svg>
+        </div>
+        <div>
+          <div class="service-title">Kiinteistöoikeus</div>
+          <p class="service-desc">Palveluita kiinteistö- ja asunto-oikeuteen liittyvissä kysymyksissä.</p>
+        </div>
+      </div>
+
+      <!-- Perintö- ja jäämistöasiat -->
+      <div class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <!-- scales icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h6v2H3z"/><path d="M21 3h-6v2h6z"/><path d="M12 7v10"/></svg>
+        </div>
+        <div>
+          <div class="service-title">Perintö- ja jäämistöasiat</div>
+          <p class="service-desc">Asiantuntevaa neuvontaa perintö- ja testamenttiasioissa.</p>
+        </div>
+      </div>
+
+      <!-- Muut oikeudelliset toimeksiannot -->
+      <div class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <!-- gavel icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 8l-6 6"/><path d="M3 21l6-6"/><path d="M14 7l3-3 4 4-3 3"/></svg>
+        </div>
+        <div>
+          <div class="service-title">Muut oikeudelliset toimeksiannot</div>
+          <p class="service-desc">Yleistä oikeudellista neuvontaa ja edustusta eri toimeksiannoissa.</p>
+        </div>
+      </div>
+
+      <!-- Sovittelu & neuvottelut -->
+      <div class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <!-- handshake icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2 12l4 4 6-6 4 4 6-6"/><path d="M7 7l3-3 4 4"/></svg>
+        </div>
+        <div>
+          <div class="service-title">Sovittelu & neuvottelut</div>
+          <p class="service-desc">Edustusta ja sovittelun tukea riitatilanteissa ennen oikeustoimia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (centered) -->
+  <section class="section contact" aria-labelledby="contact-title">
+    <h2 id="contact-title" style="font-family:'Playfair Display',serif;color:var(--blue);font-size:28px;margin-bottom:var(--spacing-md);">Yhteystiedot</h2>
+
+    <p><span class="label">Osoite:</span> Uudenmaankatu 2 A, 05800 Hyvinkää</p>
+    <p><span class="label">Puhelin:</span> 019 433 043</p>
+    <p><span class="label">Sähköposti:</span> toimisto (at) kylli.fi</p>
+
+    <div class="credibility">Suomen Asianajajaliiton jäsen</div>
+  </section>
+
+  <footer>© 2026 Asianajotoimisto Ulla-Riitta Kylli Oy</footer>
+</div>
+
+<!-- Official badge (bottom-right) -->
+<div class="badge-fixed" aria-hidden="false" role="img" aria-label="Suomen Asianajajaliiton yhteisomerkki">
+  <img src="Asianajaja-yhteisomerkki-SININEN-RGB-PNG.png" alt="Suomen Asianajajaliiton yhteisomerkki">
+</div>
+
+<!-- Shrink-on-scroll script -->
+<script>
+(function(){
+  var logo=document.getElementById('firmLogo');
+  var threshold=90;
+
+  function onScroll(){
+    if(window.scrollY>threshold){
+      logo.classList.add('shrunk');
+    } else {
+      logo.classList.remove('shrunk');
+    }
+  }
+
+  onScroll();
+
+  var ticking=false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      window.requestAnimationFrame(function(){
+        onScroll();
+        ticking=false;
+      });
+      ticking=true;
+    }
+  }, {passive:true});
+})();
+</script>
+
+</body>
+</html>
